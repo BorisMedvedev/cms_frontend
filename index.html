@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="preload" href="fonts/inter-v7-latin_cyrillic-regular.woff2"
+    as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/inter-v7-latin_cyrillic-500.woff2" as="font"
+    type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/inter-v7-latin_cyrillic-600.woff2" as="font"
+    type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/inter-v7-latin_cyrillic-700.woff2" as="font"
+    type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="./css/index.css">
+  <script defer type="module" src="./js/main.js"></script>
+
+  <title></title>
+</head>
+
+<body>
+
+  <section class="cms">
+    <div id="app" class="container">
+
+      <div class="cms__goods goods">
+        <div class="goods__panel panel">
+          <button class="panel__filter">Фильтр</button>
+          <form class="panel__search">
+            <input type="search" class="panel__input"
+              placeholder="Поиск по наименованию и категории">
+          </form>
+          <button class="panel__add-goods">Добавить товар</button>
+        </div>
+        <div class="goods__table-wrapper">
+          <table class="goods__table table">
+            <thead class="table__header">
+              <tr class="table__header-row">
+                <th class="table__header-cell">№</th>
+                <th class="table__header-cell table__header-cell_left">
+                  Наименование</th>
+                <th class="table__header-cell table__header-cell_left">
+                  Категория</th>
+                <th class="table__header-cell">ед/изм</th>
+                <th class="table__header-cell">количество</th>
+                <th class="table__header-cell">цена</th>
+                <th class="table__header-cell">ИТОГ</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody class="table__body">
+
+            </tbody>
+          </table>
+
+
+
+        </div>
+        <div class="sub-panel">
+          <p class="sub-panel__choice-pages">Показывать на странице: 5</p>
+          <p class="sub-panel__pages">1-10 из 48</p>
+          <a href="#" class="sub-panel__left"></a>
+          <a href="#" class="sub-panel__right"></a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+</body>
+
+</html>
