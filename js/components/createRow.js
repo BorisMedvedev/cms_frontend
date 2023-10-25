@@ -65,6 +65,9 @@ export const createRow = (obj) => {
 
     window.open(url, '', 'width=' + width + ', height=' +
     height + ', top=' + top + ', left=' + left);
+
+    console.log(url, '', 'width=' + width + ', height=' +
+    height + ', top=' + top + ', left=' + left);
   };
 
   btnPic.addEventListener('click', openImageWindow);

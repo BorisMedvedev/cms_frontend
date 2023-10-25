@@ -1,6 +1,6 @@
 import {createRow} from './components/createRow.js';
 import {
-  fetchDataAndLog,
+  getData,
   render,
   totalSumArray,
   updateRowNumbers,
@@ -11,7 +11,7 @@ export const init = async () => {
   const container = document.getElementById('app');
   const moduleHeader = await import('./components/createHeader.js');
   const header = moduleHeader.createHeader();
-  const newArray = await fetchDataAndLog();
+  const newArray = await getData();
   const sum = totalSumArray(newArray);
   const addBtn = document.querySelector('.panel__add-goods');
 
