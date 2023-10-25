@@ -21,14 +21,14 @@ export const init = async () => {
       .textContent = ` ${sum.toLocaleString(
           'fr-FR', {style: 'decimal', minimumFractionDigits: 0})} ₽`;
 
-  updateRowNumbers();
-  render(app, newArray, createRow);
 
   addBtn.addEventListener('click', async () => {
     const moduleModal = await import('./components/createModal.js');
     const modal = moduleModal.createModal();
     document.body.append(modal.overlay);
   });
+  render(app, newArray, createRow);
+  updateRowNumbers();
 };
 
 init();

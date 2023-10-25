@@ -33,7 +33,6 @@ export const createRow = (obj) => {
 
   nameId.dataset.id = genId;
 
-  num.textContent = obj.id;
   titleId.textContent = `ID: ${genId}`;
   title.textContent = obj.title;
   category.textContent = obj.category;
