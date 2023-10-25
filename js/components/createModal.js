@@ -56,7 +56,10 @@ export const createModal = () => {
       'Цена',
       'modal__label_price',
   );
+  const photoPreview = document.createElement('div');
+  const photoPreviewImg = document.createElement('img');
 
+  photoPreview.classList.add('photo-preview');
   labelImage.classList.add('modal__label', 'modal__label_file');
   inputImage.classList.add('modal__file', 'visually-hidden');
   modalSubmit.classList.add('modal__submit');
@@ -97,7 +100,7 @@ export const createModal = () => {
   inputPrice.input.type = 'number';
   modalTotal.textContent = 'Итоговая стоимость: ';
   labelImage.for = 'image';
-  inputImage.type = 'file';
+  labelImage.type = 'file';
   inputImage.name = 'image';
   inputImage.id = 'image';
   inputImage.tabindex = '-1';
@@ -110,6 +113,7 @@ export const createModal = () => {
   modalInputDiscount.name = 'discount_count';
   modalSubmit.textContent = 'Добавить товар';
 
+  photoPreview.append(photoPreviewImg);
   modalCheckboxWrapper.append(modalCheckbox, modalInputDiscount);
   modalLabelDiscount.append(labelDiscount, modalCheckboxWrapper);
   modalTotal.append(modalTotalPrice);
@@ -123,6 +127,7 @@ export const createModal = () => {
       modalLabelDiscount,
       inputPrice.label,
       labelImage,
+      photoPreview,
   );
   form.append(fieldset, modalFooter);
   vendorCodeWrapper.append(vendorCodeId);
