@@ -112,6 +112,7 @@ export const createModal = () => {
   modalInputDiscount.type = 'text';
   modalInputDiscount.name = 'discount_count';
   modalSubmit.textContent = 'Добавить товар';
+  photoPreview.textContent = 'Изображение не должно превышать размер 1мб';
 
   photoPreview.append(photoPreviewImg);
   modalCheckboxWrapper.append(modalCheckbox, modalInputDiscount);
