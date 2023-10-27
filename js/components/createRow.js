@@ -1,7 +1,7 @@
 import {deleteClientItem} from '../goodsApi.js';
 import {generateId, priceEditor, updateRowNumbers} from '../utils.js';
 
-export const createRow = (obj) => {
+export const createRow = (data) => {
   const trRow = document.createElement('tr');
   const num = document.createElement('td');
   const nameId = document.createElement('td');
@@ -17,7 +17,6 @@ export const createRow = (obj) => {
   const btnEdit = document.createElement('button');
   const btnDel = document.createElement('button');
   const img = document.createElement('img');
-  const genId = generateId();
 
   num.classList.add('table__cell');
   nameId.classList.add('table__cell', 'table__cell_left', 'table__cell_name');
@@ -32,24 +31,23 @@ export const createRow = (obj) => {
   btnDel.classList.add('table__btn', 'table__btn_del');
   titleId.classList.add('table__cell-id');
 
-  nameId.dataset.id = genId;
+  nameId.dataset.id = data.id;
 
-  titleId.textContent = `ID: ${genId}`;
-  title.textContent = obj.title;
-  category.textContent = obj.category;
-  units.textContent = obj.units;
+  titleId.textContent = data.id;
+  title.textContent = data.title;
+  category.textContent = data.category;
+  units.textContent = data.units;
 
-  img.src = obj.image;
-  if (obj.count > 0) {
-    quantity.textContent = obj.count;
-    price.textContent = priceEditor(parseFloat(`${obj.price}`));
-    result.textContent = priceEditor(parseFloat(`${(obj.price * obj.count)}`));
+  img.src = data.image;
+  if (data.count > 0) {
+    quantity.textContent = data.count;
+    price.textContent = priceEditor(parseFloat(`${data.price}`));
+    result.textContent = priceEditor(parseFloat(`${(data.price * data.count)}`));
   } else {
     quantity.textContent = 'Нет в наличии';
     price.textContent = '-';
     result.textContent = '-';
   }
-
   nameId.append(titleId, title);
   btnBlock.append(btnPic, btnEdit, btnDel);
   trRow.append(num, nameId, category, units, quantity, price, result, btnBlock);
@@ -73,7 +71,7 @@ export const createRow = (obj) => {
   btnPic.addEventListener('click', openImageWindow);
   btnDel.addEventListener('click', async () => {
     if (confirm('Вы уверенны ?')) {
-      await deleteClientItem(obj.id);
+      await deleteClientItem(data.id);
       trRow.remove();
       updateRowNumbers();
     }

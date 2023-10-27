@@ -3,7 +3,7 @@ import {generateId, priceEditor, updateRowNumbers} from '../utils.js';
 import {createInputFormElement} from './createInputFormElement.js';
 import {createRow} from './createRow.js';
 
-export const createModal = (obj) => {
+export const createModal = () => {
   const overlay = document.createElement('div');
   const overlayModal = document.createElement('div');
   const modalClose = document.createElement('button');
@@ -175,23 +175,21 @@ export const createModal = (obj) => {
     }
   });
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const newTrRow = {};
     newTrRow.title = inputName.input.value.trim();
     newTrRow.category = inputCategory.input.value.trim();
-    newTrRow.descr = inputDescription.input.value.trim();
+    newTrRow.description = inputDescription.input.value.trim();
     newTrRow.count = inputCount.input.value.trim();
     newTrRow.units = inputUnits.input.value.trim();
     newTrRow.price = inputPrice.input.value.trim();
     newTrRow.discont = modalInputDiscount.value.trim();
-    console.log(newTrRow);
+    await createClient(newTrRow, 'POST', newTrRow.id);
     document.querySelector('tbody').append(createRow(newTrRow));
-    createClient(newTrRow, 'POST', obj.id);
     overlay.remove();
     updateRowNumbers();
   });
-
   return {
     overlay,
     overlayModal,
