@@ -38,7 +38,7 @@ export const createRow = (data) => {
   category.textContent = data.category;
   units.textContent = data.units;
 
-  img.src = data.image;
+  img.src = `http://first-ionized-tarascosaurus.glitch.me/${data.image}`;
   if (data.count > 0) {
     quantity.textContent = data.count;
     price.textContent = priceEditor(parseFloat(`${data.price}`));
