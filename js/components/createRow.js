@@ -1,4 +1,5 @@
-import {generateId, priceEditor} from '../utils.js';
+import {deleteClientItem} from '../goodsApi.js';
+import {generateId, priceEditor, updateRowNumbers} from '../utils.js';
 
 export const createRow = (obj) => {
   const trRow = document.createElement('tr');
@@ -70,6 +71,13 @@ export const createRow = (obj) => {
   };
 
   btnPic.addEventListener('click', openImageWindow);
+  btnDel.addEventListener('click', async () => {
+    if (confirm('Вы уверенны ?')) {
+      await deleteClientItem(obj.id);
+      trRow.remove();
+      updateRowNumbers();
+    }
+  });
 
   return trRow;
 };

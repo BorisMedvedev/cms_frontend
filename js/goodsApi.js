@@ -29,7 +29,7 @@ export const createClient = async (client, method, id = null) => {
 
 
 export const deleteClientItem = async (id) => {
-  await fetch(`http://localhost:3000/api/goods/${id}`, {
+  await fetch(`http://first-ionized-tarascosaurus.glitch.me/api/goods/${id}`, {
     method: 'DELETE',
   });
 };
