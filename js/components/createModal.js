@@ -1,8 +1,9 @@
+import {createClient} from '../goodsApi.js';
 import {generateId, priceEditor, updateRowNumbers} from '../utils.js';
 import {createInputFormElement} from './createInputFormElement.js';
 import {createRow} from './createRow.js';
 
-export const createModal = () => {
+export const createModal = (obj) => {
   const overlay = document.createElement('div');
   const overlayModal = document.createElement('div');
   const modalClose = document.createElement('button');
@@ -186,6 +187,7 @@ export const createModal = () => {
     newTrRow.discont = modalInputDiscount.value.trim();
     console.log(newTrRow);
     document.querySelector('tbody').append(createRow(newTrRow));
+    createClient(newTrRow, 'POST', obj.id);
     overlay.remove();
     updateRowNumbers();
   });
