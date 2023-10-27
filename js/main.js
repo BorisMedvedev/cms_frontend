@@ -1,6 +1,6 @@
 import {createRow} from './components/createRow.js';
+import {goodsApi} from './goodsApi.js';
 import {
-  getData,
   render,
   totalSumArray,
   updateRowNumbers,
@@ -11,10 +11,11 @@ export const init = async () => {
   const container = document.getElementById('app');
   const moduleHeader = await import('./components/createHeader.js');
   const header = moduleHeader.createHeader();
-  const newArray = await getData();
-  const sum = totalSumArray(newArray);
+  // const newArray = await getData();
   const addBtn = document.querySelector('.panel__add-goods');
-
+  const goods = await goodsApi();
+  console.log(goods.goods);
+  const sum = totalSumArray(goods.goods);
   container.prepend(header);
 
   document.querySelector('.cms__total-price')
@@ -27,7 +28,7 @@ export const init = async () => {
     const modal = moduleModal.createModal();
     document.body.append(modal.overlay);
   });
-  render(app, newArray, createRow);
+  render(app, goods.goods, createRow);
   updateRowNumbers();
 };
 

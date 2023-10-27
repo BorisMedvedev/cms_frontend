@@ -38,6 +38,7 @@
   padding: 20px 23px 20px 21px;
   font-size: 14px;
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .table__cell-id {
@@ -82,5 +83,5 @@
 
 .table__btn_del {
   background-image: url("../img/delete.svg");
-  
+
 }
