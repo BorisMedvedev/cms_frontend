@@ -174,6 +174,12 @@ export const createModal = () => {
       modalTotalPrice.textContent = res;
     }
   });
+  inputName.input.required = true;
+  inputCategory.input.required = true;
+  inputCount.input.required = true;
+  inputUnits.input.required = true;
+  inputPrice.input.required = true;
+  modalInputDiscount.required = true;
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
