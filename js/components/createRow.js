@@ -38,7 +38,7 @@ export const createRow = (obj) => {
   category.textContent = obj.category;
   units.textContent = obj.units;
 
-  img.src = obj.images.big;
+  img.src = 'https://catherineasquithgallery.com/uploads/posts/2021-02/1613666316_81-p-fon-dlya-prezentatsii-reka-96.jpg';
   if (obj.count > 0) {
     quantity.textContent = obj.count;
     price.textContent = priceEditor(parseFloat(`${obj.price}`));

@@ -1,5 +1,6 @@
-import {generateId, priceEditor} from '../utils.js';
+import {generateId, priceEditor, updateRowNumbers} from '../utils.js';
 import {createInputFormElement} from './createInputFormElement.js';
+import {createRow} from './createRow.js';
 
 export const createModal = () => {
   const overlay = document.createElement('div');
@@ -175,8 +176,18 @@ export const createModal = () => {
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    console.log('Форма ушла');
+    const newTrRow = {};
+    newTrRow.title = inputName.input.value.trim();
+    newTrRow.category = inputCategory.input.value.trim();
+    newTrRow.descr = inputDescription.input.value.trim();
+    newTrRow.count = inputCount.input.value.trim();
+    newTrRow.units = inputUnits.input.value.trim();
+    newTrRow.price = inputPrice.input.value.trim();
+    newTrRow.discont = modalInputDiscount.value.trim();
+    console.log(newTrRow);
+    document.querySelector('tbody').append(createRow(newTrRow));
     overlay.remove();
+    updateRowNumbers();
   });
 
   return {
