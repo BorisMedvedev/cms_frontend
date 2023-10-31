@@ -1,5 +1,5 @@
-import {deleteClientItem} from '../goodsApi.js';
-import {generateId, priceEditor, updateRowNumbers} from '../utils.js';
+import {deleteClientItem, goodsApi} from '../goodsApi.js';
+import {priceEditor, totalSumArray, updateRowNumbers} from '../utils.js';
 
 export const createRow = (data) => {
   const trRow = document.createElement('tr');
@@ -73,6 +73,11 @@ export const createRow = (data) => {
     if (confirm('Вы уверенны ?')) {
       await deleteClientItem(data.id);
       trRow.remove();
+      const goods = await goodsApi();
+      const sum = totalSumArray(goods.goods);
+      document.querySelector('.cms__total-price')
+          .textContent = ` ${sum.toLocaleString(
+              'fr-FR', {style: 'decimal', minimumFractionDigits: 0})} ₽`;
       updateRowNumbers();
     }
   });

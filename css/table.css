@@ -27,6 +27,7 @@
 }
 
 .table__body {
+  position: relative;
   text-align: center;
 }
 
