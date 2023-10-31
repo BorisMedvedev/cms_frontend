@@ -139,15 +139,6 @@ export const createModal = () => {
   overlayModal.append(modalClose, modalTop, form);
   overlay.append(overlayModal);
 
-  modalCheckbox.addEventListener('input', () => {
-    if (modalCheckbox.checked) {
-      modalInputDiscount.disabled = false;
-    } else {
-      modalInputDiscount.disabled = true;
-      modalInputDiscount.value = '';
-    }
-  });
-
   document.addEventListener('click', (e) => {
     if (e.target === modalClose || e.target === overlay) {
       overlay.remove();
@@ -174,6 +165,27 @@ export const createModal = () => {
       modalTotalPrice.textContent = res;
     }
   });
+
+  modalCheckbox.addEventListener('input', () => {
+    if (modalCheckbox.checked) {
+      modalInputDiscount.disabled = false;
+      modalInputDiscount.addEventListener('change', () => {
+        const value = parseFloat((inputCount.input.value * inputPrice.input.value * modalInputDiscount.value) / 100);
+        const res = priceEditor(value);
+
+        if (!modalInputDiscount.value) {
+          modalTotalPrice.textContent = '';
+        } else {
+          modalTotalPrice.textContent = res;
+          console.log(res);
+        }
+      });
+    } else {
+      modalInputDiscount.disabled = true;
+      modalInputDiscount.value = '';
+    }
+  });
+
   inputName.input.required = true;
   inputCategory.input.required = true;
   inputCount.input.required = true;
