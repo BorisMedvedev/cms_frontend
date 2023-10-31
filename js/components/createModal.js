@@ -1,5 +1,7 @@
-import {generateId, priceEditor} from '../utils.js';
+import {createClient} from '../goodsApi.js';
+import {generateId, priceEditor, updateRowNumbers} from '../utils.js';
 import {createInputFormElement} from './createInputFormElement.js';
+import {createRow} from './createRow.js';
 
 export const createModal = () => {
   const overlay = document.createElement('div');
@@ -137,15 +139,6 @@ export const createModal = () => {
   overlayModal.append(modalClose, modalTop, form);
   overlay.append(overlayModal);
 
-  modalCheckbox.addEventListener('input', () => {
-    if (modalCheckbox.checked) {
-      modalInputDiscount.disabled = false;
-    } else {
-      modalInputDiscount.disabled = true;
-      modalInputDiscount.value = '';
-    }
-  });
-
   document.addEventListener('click', (e) => {
     if (e.target === modalClose || e.target === overlay) {
       overlay.remove();
@@ -173,12 +166,49 @@ export const createModal = () => {
     }
   });
 
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    console.log('Форма ушла');
-    overlay.remove();
+  modalCheckbox.addEventListener('input', () => {
+    if (modalCheckbox.checked) {
+      modalInputDiscount.disabled = false;
+
+      modalInputDiscount.addEventListener('change', () => {
+        const inputCountValue = parseFloat(inputCount.input.value);
+        const inputPriceValue = parseFloat(inputPrice.input.value);
+        const modalInputDiscountValue = parseFloat(modalInputDiscount.value);
+
+        const percent = (inputCountValue * inputPriceValue * modalInputDiscountValue) / 100;
+
+        const res = priceEditor(percent);
+        modalTotalPrice.textContent = res;
+      });
+    } else {
+      modalInputDiscount.disabled = true;
+      modalInputDiscount.value = '';
+      modalTotalPrice.textContent = '';
+    }
   });
 
+  inputName.input.required = true;
+  inputCategory.input.required = true;
+  inputCount.input.required = true;
+  inputUnits.input.required = true;
+  inputPrice.input.required = true;
+  modalInputDiscount.required = true;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const newTrRow = {};
+    newTrRow.title = inputName.input.value.trim();
+    newTrRow.category = inputCategory.input.value.trim();
+    newTrRow.description = inputDescription.input.value.trim();
+    newTrRow.count = inputCount.input.value.trim();
+    newTrRow.units = inputUnits.input.value.trim();
+    newTrRow.price = inputPrice.input.value.trim();
+    newTrRow.discont = modalInputDiscount.value.trim();
+    await createClient(newTrRow, 'POST', newTrRow.id);
+    document.querySelector('tbody').append(createRow(newTrRow));
+    overlay.remove();
+    updateRowNumbers();
+  });
   return {
     overlay,
     overlayModal,
