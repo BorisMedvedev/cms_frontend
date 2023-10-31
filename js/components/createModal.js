@@ -169,20 +169,21 @@ export const createModal = () => {
   modalCheckbox.addEventListener('input', () => {
     if (modalCheckbox.checked) {
       modalInputDiscount.disabled = false;
-      modalInputDiscount.addEventListener('change', () => {
-        const value = parseFloat((inputCount.input.value * inputPrice.input.value * modalInputDiscount.value) / 100);
-        const res = priceEditor(value);
 
-        if (!modalInputDiscount.value) {
-          modalTotalPrice.textContent = '';
-        } else {
-          modalTotalPrice.textContent = res;
-          console.log(res);
-        }
+      modalInputDiscount.addEventListener('change', () => {
+        const inputCountValue = parseFloat(inputCount.input.value);
+        const inputPriceValue = parseFloat(inputPrice.input.value);
+        const modalInputDiscountValue = parseFloat(modalInputDiscount.value);
+
+        const percent = (inputCountValue * inputPriceValue * modalInputDiscountValue) / 100;
+
+        const res = priceEditor(percent);
+        modalTotalPrice.textContent = res;
       });
     } else {
       modalInputDiscount.disabled = true;
       modalInputDiscount.value = '';
+      modalTotalPrice.textContent = '';
     }
   });
 
