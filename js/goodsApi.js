@@ -1,6 +1,6 @@
 export const goodsApi = async () => {
   try {
-    const response = await fetch('http://first-ionized-tarascosaurus.glitch.me/api/goods', {
+    const response = await fetch('https://first-ionized-tarascosaurus.glitch.me/api/goods', {
       method: 'GET',
     });
 
@@ -15,7 +15,7 @@ export const goodsApi = async () => {
 
 export const createClient = async (client, method, id = null) => {
   try {
-    const response = await fetch(`http://first-ionized-tarascosaurus.glitch.me/api/goods/${method === 'POST' ? '' : id}`, {
+    const response = await fetch(`https://first-ionized-tarascosaurus.glitch.me/api/goods/${method === 'POST' ? '' : id}`, {
       method,
       body: JSON.stringify(client),
     });
@@ -29,7 +29,7 @@ export const createClient = async (client, method, id = null) => {
 
 
 export const deleteClientItem = async (id) => {
-  await fetch(`http://first-ionized-tarascosaurus.glitch.me/api/goods/${id}`, {
+  await fetch(`https://first-ionized-tarascosaurus.glitch.me/api/goods/${id}`, {
     method: 'DELETE',
   });
 };
